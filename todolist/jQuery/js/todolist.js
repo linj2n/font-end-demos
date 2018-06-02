@@ -7,28 +7,28 @@ $("ul").on("click", "li", function(){
 });
 
 $("input[name=myInput]").keypress(function(event) {
-    if(event.which == 13) {
+    if (event.which == 13) {
       addNewElement();
     }
 });
 
-$(".addBtn").click(function(){
-    var input = $("#myInput");
-    if (input.val() == "") {
-      alert("You must write something!");
-    } else {
-      addNewElement();
-    }
+$(".addBtn").click(function() {
+    addNewElement();
 }); 
 
 function addNewElement() {
-  console.log("addNewElement");
   var myUL = $("#myUL");
   var input = $("#myInput");
+  if (input.val() == "") {
+    alert("You must write something!");
+  } else {
+    // myUL.append("<li>"+ input.val() +"<span class=\"close\">\u00D7</span></li>");
+    var li = $("<li></li>").text(input.val());
+    var span = $("<span></span>").text("\u00D7");
+    li.append(span);
+    myUL.append(li);
 
-  // 增加一个 li
-  myUL.append("<li>"+ input.val() +"<span class=\"close\">\u00D7</span></li>");
-
-  // 清空输入框
-  input.val("");
+    span.addClass("close");
+    input.val("");
+  }
 }
